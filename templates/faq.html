@@ -1,0 +1,142 @@
+{% extends 'main.html' %}
+{% load static %}
+
+    {% block content %}
+    <!-- ...:::: Start Breadcrumb Section:::... -->
+    <div class="breadcrumb-section breadcrumb-bg-color--golden">
+        <div class="breadcrumb-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="breadcrumb-title">Frequently Asked Questions</h3>
+                        <div class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
+                            <nav aria-label="breadcrumb">
+                                <ul>
+                                    <li><a href="{% url 'index' %}">Home</a></li>
+                                    <li><a href="{% url 'shop' %}">Shop</a></li>
+                                    <li class="active" aria-current="page">Frequently Asked Questions</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- ...:::: End Breadcrumb Section:::... -->
+
+    <!-- ...::::Start About Us Center Section:::... -->
+    <div class="faq-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="faq-content" data-aos="fade-up" data-aos-delay="0">
+                        <h5 class="title">Below are frequently asked questions, you may find the answer for yourself
+                        </h5>
+                        {% comment %} <p></p> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+            <div class="faq-wrapper">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="faq-accordian">
+                            <div class="faq-accordian-single-item" data-aos="fade-up" data-aos-delay="0">
+                                <input id="item-1" name="accordian-item" type="radio" checked="">
+                                <label for="item-1">Does Orderright offer free delivery?</label>
+                                <div class="item-content">
+                                    <p>Yes! We offer free delivery anywhere on the KNUST campus. You don’t need to worry about transportation fares—we’ll bring your order directly to you.</p>
+                                </div>
+                            </div>
+                            <div class="faq-accordian-single-item" data-aos="fade-up" data-aos-delay="200">
+                                <input id="item-2" name="accordian-item" type="radio">
+                                <label for="item-2"> How long does delivery take?</label>
+                                <div class="item-content">
+                                    <p>Delivery times may vary depending on your location and product availability. Most orders are delivered within a timeframe of atmost 48hrs.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="faq-accordian-single-item" data-aos="fade-up" data-aos-delay="400">
+                                <input id="item-3" name="accordian-item" type="radio">
+                                <label for="item-3">What is your return policy?</label>
+                                <div class="item-content">
+                                    <p>We offer a 2-day money-back guarantee. If you’re not satisfied with your purchase, you can return the item within 48 hours for a full refund. The item must be unused and in its original packaging.</p>
+                                </div>
+                            </div>
+                            <div class="faq-accordian-single-item" data-aos="fade-up" data-aos-delay="600">
+                                <input id="item-4" name="accordian-item" type="radio">
+                                <label for="item-4">How do I initiate a return?</label>
+                                <div class="item-content">
+                                    <p>To initiate a return, please contact our customer support team at +233 50 736 3108/ +233 59 903 5231/ orderrightgh@gmail.com. We will provide you with a return authorization and instructions.</p>
+                                </div>
+                            </div>
+                            <div class="faq-accordian-single-item" data-aos="fade-up" data-aos-delay="800">
+                                <input id="item-5" name="accordian-item" type="radio">
+                                <label for="item-5">How long does it take to process a refund?</label>
+                                <div class="item-content">
+                                    <p>Refunds are processed immediately after we receive the returned item.</p>
+                                </div>
+                            </div>
+                            <div class="faq-accordian-single-item" data-aos="fade-up" data-aos-delay="1000">
+                                <input id="item-6" name="accordian-item" type="radio">
+                                <label for="item-6">When do I pay for my order?</label>
+                                <div class="item-content">
+                                    <p>We offer safe payment options. You only pay after your order has been delivered and you are satisfied with the product.</p>
+                                </div>
+                            </div>
+                            <div class="faq-accordian-single-item" data-aos="fade-up" data-aos-delay="1000">
+                                <input id="item-7" name="accordian-item" type="radio">
+                                <label for="item-7">What payment methods do you accept?</label>
+                                <div class="item-content">
+                                    <p>We accept various payment methods, including mobile money, credit/debit cards, and other secure payment options. This is after delivery of item</p>
+                                </div>
+                            </div>
+                            <div class="faq-accordian-single-item" data-aos="fade-up" data-aos-delay="1000">
+                                <input id="item-8" name="accordian-item" type="radio">
+                                <label for="item-8">How does the loyalty program work?</label>
+                                <div class="item-content">
+                                    <p>Our loyalty program rewards frequent shoppers. When you make up to 50 purchases within a month, you’ll receive a 7% discount on all items for the following month.</p>
+                                </div>
+                            </div>
+                            <div class="faq-accordian-single-item" data-aos="fade-up" data-aos-delay="1000">
+                                <input id="item-9" name="accordian-item" type="radio">
+                                <label for="item-9">How do I join the loyalty program?</label>
+                                <div class="item-content">
+                                    <p>All customers are automatically enrolled in the loyalty program. Simply make purchases as usual, and we’ll track your progress.</p>
+                                </div>
+                            </div>
+                            <div class="faq-accordian-single-item" data-aos="fade-up" data-aos-delay="1000">
+                                <input id="item-10" name="accordian-item" type="radio">
+                                <label for="item-10">Can I combine the loyalty discount with other promotions?</label>
+                                <div class="item-content">
+                                    <p>The loyalty discount cannot be combined with other promotions or discounts unless otherwise stated.</p>
+                                </div>
+                            </div>
+                            <div class="faq-accordian-single-item" data-aos="fade-up" data-aos-delay="1000">
+                                <input id="item-12" name="accordian-item" type="radio">
+                                <label for="item-12">Do you deliver outside KNUST campus?</label>
+                                <div class="item-content">
+                                    <p>Currently, we only offer free delivery within the KNUST campus. For deliveries outside this area, additional fees may apply. Please contact us for more details.</p>
+                                </div>
+                            </div>
+                            <div class="faq-accordian-single-item" data-aos="fade-up" data-aos-delay="1000">
+                                <input id="item-13" name="accordian-item" type="radio">
+                                <label for="item-13">Can I cancel or modify my order after placing it?</label>
+                                <div class="item-content">
+                                    <p>You can cancel or modify your order within 24hours of placing it. After that, the order will be processed for delivery. Please contact us immediately if you need to make changes.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="faq-accordian-single-item" data-aos="fade-up" data-aos-delay="1000">
+                                <input id="item-14" name="accordian-item" type="radio">
+                                <label for="item-14">How do I contact customer support?</label>
+                                <div class="item-content">
+                                    <p>You can reach our customer support team at +233 59 903 5231/+233 50 736 3108 or send us a <a style="color:blue;" href="{% url 'contact' %}">mail</a> at orderrightgh@gmail.com. We’re here to help with any questions or concerns.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- ...::::End  About Us Center Section:::... -->
+    {% endblock  %}

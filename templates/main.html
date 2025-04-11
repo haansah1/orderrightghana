@@ -1,0 +1,697 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Orderright Shop</title>
+
+    <!-- ::::::::::::::Favicon icon::::::::::::::-->
+    <link rel="shortcut icon" href={% static 'assets/images/favicon.ico' %} type="image/png">
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <link rel="stylesheet" href={% static 'assets/css/vendor/vendor.min.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/plugins/plugins.min.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/style.min.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/receipt.css' %}>
+
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+
+        function getToken(name){
+            var cookieValue = null;
+            if(document.cookie && document.cookie !== ''){
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++){
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')){
+                        cookieValue = decodeURIComponent(cookie.substring(
+                            name.length + 1
+                        ));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getToken('csrftoken')
+
+        function getCookie(name){
+            var cookieArr = document.cookie.split(";");
+
+            for(var i = 0; i < cookieArr.length; i++){
+                var cookiePair = cookieArr[i].split("=");
+
+                if (name == cookiePair[0].trim()){
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
+        }
+
+        var cart = JSON.parse(getCookie('cart'))
+        if(cart == undefined){
+            cart = {}
+            console.log('cart was created')
+            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+        }
+        console.log('Cart:', cart)
+    </script>
+
+</head>
+
+<body>
+    <!-- Start Header Area -->
+    <header class="header-section d-none d-xl-block">
+        <div class="header-wrapper">
+            <div class="header-bottom header-bottom-color--golden section-fluid sticky-header sticky-color--golden">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 d-flex align-items-center justify-content-between">
+                            <!-- Start Header Logo -->
+                            <div class="header-logo">
+                                <div class="logo">
+                                    <a href="{% url 'index' %}' %}"><img src={% static 'assets/images/logo/logo_black.png' %} alt=""></a>
+                                </div>
+                            </div>
+                            <!-- End Header Logo -->
+
+                            <!-- Start Header Main Menu -->
+                            <div class="main-menu menu-color--black menu-hover-color--golden">
+                                <nav>
+                                    <ul>
+                                        <li class="has-dropdown">
+                                            <a class="active main-menu-link" href="{% url 'index' %}">Home</a>
+                                        </li>
+                                        <li class="has-dropdown has-megaitem">
+                                            <a href="{% url 'shop' %}">Shop <i
+                                                    class="fa fa-angle-down"></i></a>
+                                            <!-- Mega Menu -->
+                                            <div class="mega-menu">
+                                                <ul class="mega-menu-inner">
+                                                    <!-- Mega Menu Sub Link -->
+                                                    <li class="mega-menu-item">
+                                                        <a href="#" class="mega-menu-item-title">Other Pages</a>
+                                                        <ul class="mega-menu-sub">
+                                                            <li><a href="{% url 'wears' %}">Wears</a></li>
+                                                            <li><a href="{% url 'accessories' %}">Phone accessories</a></li>
+                                                            <li><a href="{% url 'room' %}">Room Accessories</a></li>
+                                                            <li><a href="{% url 'phones' %}">Phones</a></li>
+                                                            <li><a href="{% url 'laptops' %}">Laptops</a></li>
+                                                            <li><a href="{% url 'cart' %}">Cart</a></li>
+                                                            <li><a href="{% url 'checkout' %}">Checkout</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                <div class="menu-banner">
+                                                    <a href="{% url 'wears' %}" class="menu-banner-link">
+                                                        <img class="menu-banner-img"
+                                                            src={% static 'assets/images/banner/menu-banner.jpg' %} alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="has-dropdown">
+                                        <a href="{% url 'blog' %}">Blog</a>
+                                        </li>
+                                        <li class="has-dropdown">
+                                            <a href="#">Pages <i class="fa fa-angle-down"></i></a>
+                                            <!-- Sub Menu -->
+                                            <ul class="sub-menu">
+                                                <li><a href="{% url 'faq' %}">Frequently Questions</a></li>
+                                                {% comment %} <li><a href="privacy-policy.html">Privacy Policy</a></li> {% endcomment %}
+                                            </ul>
+                                        </li>
+                                        {% comment %} <li>
+                                            <a href="{% url 'about' %}">About Us</a>
+                                        </li> {% endcomment %}
+                                        <li>
+                                            <a href="{% url 'contact' %}">Contact Us</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <!-- End Header Main Menu Start -->
+
+                            <!-- Start Header Action Link -->
+                            <ul class="header-action-link action-color--black action-hover-color--golden">
+                                <li>
+                                    <a href="#offcanvas-add-cart" class="offcanvas-toggle">
+                                        <i class="icon-bag"></i>
+                                        <span class="item-count">{{cartItems}}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#search">
+                                        <i class="icon-magnifier"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#offcanvas-about" class="offacnvas offside-about offcanvas-toggle">
+                                        <i class="icon-menu"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- End Header Action Link -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Start Header Area -->
+
+    <!-- Start Mobile Header -->
+    <div class="mobile-header mobile-header-bg-color--golden section-fluid d-lg-block d-xl-none">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 d-flex align-items-center justify-content-between">
+                    <!-- Start Mobile Left Side -->
+                    <div class="mobile-header-left">
+                        <ul class="mobile-menu-logo">
+                            <li>
+                                <a href="{% url 'index' %}">
+                                    <div class="logo">
+                                        <img src={% static 'assets/images/logo/logo_black.png' %} alt="">
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Mobile Left Side -->
+
+                    <!-- Start Mobile Right Side -->
+                    <div class="mobile-right-side">
+                        <ul class="header-action-link action-color--black action-hover-color--golden">
+                            <li>
+                                <a href="#search">
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#offcanvas-add-cart" class="offcanvas-toggle">
+                                    <i class="icon-bag"></i>
+                                    <span class="item-count">{{cartItems}}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#mobile-menu-offcanvas" class="offcanvas-toggle offside-menu">
+                                    <i class="icon-menu"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Mobile Right Side -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Mobile Header -->
+
+    <!--  Start Offcanvas Mobile Menu Section -->
+    <div id="mobile-menu-offcanvas" class="offcanvas offcanvas-rightside offcanvas-mobile-menu-section">
+        <!-- Start Offcanvas Header -->
+        <div class="offcanvas-header text-right">
+            <button class="offcanvas-close"><i class="ion-android-close"></i></button>
+        </div> <!-- End Offcanvas Header -->
+        <!-- Start Offcanvas Mobile Menu Wrapper -->
+        <div class="offcanvas-mobile-menu-wrapper">
+            <!-- Start Mobile Menu  -->
+            <div class="mobile-menu-bottom">
+                <!-- Start Mobile Menu Nav -->
+                <div class="offcanvas-menu">
+                    <ul>
+                        <li>
+                            <a href="{% url 'index' %}"><span>Home</span></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'shop' %}"><span>Shop</span></a>
+                            <ul class="mobile-sub-menu">
+                                <li class="mobile-sub-menu">
+                                    <li><a href="{% url 'wears' %}">Wears</a></li>
+                                    <li><a href="{% url 'accessories' %}">Phone accessories</a></li>
+                                    <li><a href="{% url 'room' %}">Room Accessories</a></li>
+                                    <li><a href="{% url 'phones' %}">Phones</a></li>
+                                    <li><a href="{% url 'laptops' %}">Laptops</a></li>
+
+                                    <li><a href="{% url 'cart' %}">Cart</a></li>
+                                    <li><a href="{% url 'checkout' %}">Checkout</a></li>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{% url 'blog' %}"><span>Blogs</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span>Pages</span></a>
+                            <ul class="mobile-sub-menu">
+                                <li><a href="{% url 'faq' %}">Frequently Questions</a></li>
+                                {% comment %} <li><a href="privacy-policy.html">Privacy Policy</a></li> {% endcomment %}
+                            </ul>
+                        </li>
+                        {% comment %} <li><a href="{% url 'about' %}">About Us</a></li> {% endcomment %}
+                        <li><a href="{% url 'contact'%}">Contact Us</a></li>
+                    </ul>
+                </div> <!-- End Mobile Menu Nav -->
+            </div> <!-- End Mobile Menu -->
+
+            <!-- Start Mobile contact Info -->
+            <div class="mobile-contact-info">
+                <div class="logo">
+                    <a href="{% url 'index' %}"><img src={% static 'assets/images/logo/logo_white.png' %} alt=""></a>
+                </div>
+
+                <address class="address">
+                    <span>Address: KNUST Campus.</span>
+                    <span>Call Us: +233 59 903 5321, +233 50 736 3108</span>
+                    <span>Email: orderrightgh@gmail.com</span>
+                </address>
+
+                <ul class="social-link">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+
+                <ul class="user-link">
+                    <li><a href="{% url 'cart' %}">Cart</a></li>
+                    <li><a href="{% url 'checkout' %}">Checkout</a></li>
+                </ul>
+            </div>
+            <!-- End Mobile contact Info -->
+
+        </div> <!-- End Offcanvas Mobile Menu Wrapper -->
+    </div> <!-- ...:::: End Offcanvas Mobile Menu Section:::... -->
+
+    <!-- Start Offcanvas Mobile Menu Section -->
+    <div id="offcanvas-about" class="offcanvas offcanvas-rightside offcanvas-mobile-about-section">
+        <!-- Start Offcanvas Header -->
+        <div class="offcanvas-header text-right">
+            <button class="offcanvas-close"><i class="ion-android-close"></i></button>
+        </div> <!-- End Offcanvas Header -->
+        <!-- Start Offcanvas Mobile Menu Wrapper -->
+        <!-- Start Mobile contact Info -->
+        <div class="mobile-contact-info">
+            <div class="logo">
+                <a href="{% url 'index' %}"><img src={% static 'assets/images/logo/logo_white.png' %} alt=""></a>
+            </div>
+
+            <address class="address">
+                <span>Address: KNUST Campus</span>
+                <span>Call Us: +233 59 903 5231, +233 50 736 3108</span>
+                <span>Email: orderrightgh@gmail.com</span>
+            </address>
+
+            <ul class="social-link">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+
+            <ul class="user-link">
+                <li><a href="{% url 'cart' %}">Cart</a></li>
+                <li><a href="{% url 'checkout' %}">Checkout</a></li>
+            </ul>
+        </div>
+        <!-- End Mobile contact Info -->
+    </div> <!-- ...:::: End Offcanvas Mobile Menu Section:::... -->
+
+    <!-- Start Offcanvas Addcart Section -->
+    <div id="offcanvas-add-cart" class="offcanvas offcanvas-rightside offcanvas-add-cart-section">
+        <!-- Start Offcanvas Header -->
+        <div class="offcanvas-header text-right">
+            <button class="offcanvas-close"><i class="ion-android-close"></i></button>
+        </div> <!-- End Offcanvas Header -->
+
+        <!-- Start  Offcanvas Addcart Wrapper -->
+        <div class="offcanvas-add-cart-wrapper">
+            <h4 class="offcanvas-title">Shopping Cart</h4>
+            <ul class="offcanvas-cart">
+                {% for item in items %}
+                <li class="offcanvas-cart-item-single">
+                    <div class="offcanvas-cart-item-block">
+                        <a href="#" class="offcanvas-cart-item-image-link">
+                            <img src="{{ item.product.imageURL }}" class="offcanvas-cart-image" alt="Product Image" onerror="this.onerror=null; this.src='{% static 'assets/images/banner/banner-styl-3-img-1.jpg' %}';">
+                        </a>
+                        <div class="offcanvas-cart-item-content">
+                            <a href="{% url 'product_details' item.product.id %}" class="offcanvas-cart-item-link">{{item.product.name}}</a>
+                            <div class="offcanvas-cart-item-details">
+                                <span class="offcanvas-cart-item-details-quantity">{{item.quantity}} x </span>
+                                <span class="offcanvas-cart-item-details-price">GHS {{item.product.price}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offcanvas-cart-item-delete text-right">
+                        <a data-product="{{ item.product.id }}" data-action="remove" class="offcanvas-cart-item-delete update-cart"><i class="fa fa-trash-o"></i></a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="offcanvas-cart-total-price">
+                <span class="offcanvas-cart-total-price-text">Subtotal:</span>
+                <span class="offcanvas-cart-total-price-value">GHS {{order.get_cart_total}}</span>
+            </div>
+            <ul class="offcanvas-cart-action-button">
+                <li><a href="{% url 'cart' %}" class="btn btn-block btn-golden">View Cart</a></li>
+                <li><a href="{% url 'checkout' %}" class=" btn btn-block btn-golden mt-5">Checkout</a></li>
+            </ul>
+        </div> <!-- End  Offcanvas Addcart Wrapper -->
+
+    </div> <!-- End  Offcanvas Addcart Section -->
+
+
+    <!-- Start Offcanvas Search Bar Section -->
+    <div id="search" class="search-modal">
+        <button type="button" class="close">×</button>
+        <form method=POST action="{% url 'search' %}">
+            {% csrf_token %}
+            <input type="search" placeholder="type keyword(s) here" name="searched" />
+            <button type="submit" class="btn btn-lg btn-golden">Search</button>
+        </form>
+    </div>
+    <!-- End Offcanvas Search Bar Section -->
+
+    <!-- Offcanvas Overlay -->
+    <div class="offcanvas-overlay"></div>
+
+
+    {% block content %}
+    {% endblock content %}
+    </br></br>
+
+    <!-- Start Footer Section -->
+    <footer class="footer-section footer-bg">
+        <div class="footer-wrapper">
+            <!-- Start Footer Top -->
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row mb-n6">
+                        <div class="col-lg-3 col-sm-6 mb-6">
+                            <!-- Start Footer Single Item -->
+                            <div class="footer-widget-single-item footer-widget-color--golden" data-aos="fade-up"
+                                data-aos-delay="0">
+                                <h5 class="title">DASHBOARD</h5>
+                                <ul class="footer-nav">
+                                    <li><a href="{% url 'index'%}">Home</a></li>
+                                    <li><a href="{% url 'contact'%}">Contact</a></li>
+                                    <li><a href="{% url 'blog'%}">Blog</a></li>
+                                </ul>
+                                
+                            </div>
+                            <!-- End Footer Single Item -->
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-6">
+                            <!-- Start Footer Single Item -->
+                            <div class="footer-widget-single-item footer-widget-color--golden" data-aos="fade-up"
+                                data-aos-delay="200">
+                                <h5 class="title">OTHER PAGES</h5>
+                                <ul class="footer-nav">
+                                    {% comment %} <li><a href="my-account.html">My account</a></li> {% endcomment %}
+                                    {% comment %} <li><a href="privacy-policy.html">Privacy Policy</a></li> {% endcomment %}
+                                    <li><a href="{% url 'cart' %}">Cart</a></li>
+                                    <li><a href="{% url 'checkout' %}"> Checkout</a></li>
+                                    <li><a href="{% url 'faq' %}">Frequently Questions</a></li>
+                                    {% comment %} <li><a href="#">Order History</a></li> {% endcomment %}
+                                </ul>
+                            </div>
+                            <!-- End Footer Single Item -->
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-6">
+                            <!-- Start Footer Single Item -->
+                            <div class="footer-widget-single-item footer-widget-color--golden" data-aos="fade-up"
+                                data-aos-delay="400">
+                                <h5 class="title">CATEGORIES</h5>
+                                <ul class="footer-nav">
+                                    <li><a href="{% url 'laptops' %}">Laptops</a></li>
+                                    <li><a href="{% url 'phones' %}"> Phones</a></li>
+                                    <li><a href="{% url 'accessories' %}"> Phone accessories</a></li>
+                                    <li><a href="{% url 'room' %}"> Hostel & Hallroom accessories</a></li>
+                                    <li><a href="{% url 'wears' %}">Wears and Miscellaneous</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Footer Single Item -->
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-6">
+                            <!-- Start Footer Single Item -->
+                            <div class="footer-widget-single-item footer-widget-color--golden" data-aos="fade-up"
+                                data-aos-delay="600">
+                                <h5 class="title">ABOUT US</h5>
+                                <div class="footer-about">
+                                    <p>We are a team of developers reading Computer Engineering in KNUST, that love to create high quality websites and software
+                                        solutions to make life on campus easier</p>
+
+                                    <address class="address">
+                                        <span>Address: KNUST Campus.</span>
+                                        <span>Email: orderrightgh@gmail.com</span>
+                                    </address>
+                                </div>
+                            </div>
+                            <!-- End Footer Single Item -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Footer Top -->
+
+            <!-- Start Footer Center -->
+            <div class="footer-center">
+                <div class="container">
+                    <div class="row mb-n6">
+                        <div class="col-xl-3 col-lg-4 col-md-6 mb-6">
+                            <div class="footer-social" data-aos="fade-up" data-aos-delay="0">
+                                <h4 class="title">FOLLOW US</h4>
+                                <ul class="footer-social-link">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-lg-6 col-md-6 mb-6">
+                            <div class="footer-newsletter" data-aos="fade-up" data-aos-delay="200">
+                                <h4 class="title">DON'T MISS OUT ON THE LATEST</h4>
+                                <div class="form-newsletter">
+                                    <form action="https://formspree.io/f/mblglayn" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-fild-newsletter-single-item input-color--golden">
+                                            <input type="email" placeholder="Your email address..." required name="email_subsribe">
+                                            <button type="submit">SUBSCRIBE!</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Start Footer Center -->
+
+            <!-- Start Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="container">
+                    <div
+                        class="row justify-content-between align-items-center align-items-center flex-column flex-md-row mb-n6">
+                        <div class="col-auto mb-6">
+                            <div class="footer-copyright">
+                                <p class="copyright-text">Copyrights &copy; 2025 <a href="{% url 'index' %}">orderright</a>, All Rights Reserved</p>
+
+                            </div>
+                        </div>
+                        <div class="col-auto mb-6">
+                            <div class="footer-payment">
+                                <div class="image">
+                                    {% comment %} <img src={% static 'assets/images/company-logo/payment.png' %} alt=""> {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Start Footer Bottom -->
+        </div>
+    </footer>
+    <!-- End Footer Section -->
+
+    <!-- material-scrolltop button -->
+    <button class="material-scrolltop" type="button"></button>
+
+    <!-- Start Modal Add cart -->
+    <div class="modal fade" id="modalAddcart" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col text-right">
+                                <button type="button" class="close modal-close" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                    <span aria-hidden="true"> <i class="fa fa-times"></i></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="modal-add-cart-product-img">
+                                            <img  class="img-fluid"
+                                                src={% static 'assets/images/banner/congrats.jpg' %} alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="modal-add-cart-info"><i class="fa fa-check-square"></i>Added to cart
+                                            successfully!</div>
+                                        <div class="modal-add-cart-product-cart-buttons">
+                                            <a href="{% url 'cart' %}">View Cart</a>
+                                            <a href="{% url 'checkout' %}">Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 modal-border">
+                                <ul class="modal-add-cart-product-shipping-info">
+                                    <li> <strong><i class="icon-shopping-cart"></i> There Are {{cartItems}} Items In Your
+                                            Cart.</strong></li>
+                                    <li> <strong>TOTAL PRICE: </strong> <span>GHS {{order.get_cart_total}}</span></li>
+                                    <li class="modal-continue-button"><a href="#" data-bs-dismiss="modal">CONTINUE
+                                            SHOPPING</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Modal Add cart -->
+
+ 
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <script src={% static 'assets/js/vendor/vendor.min.js' %}></script>
+    <script src={% static 'assets/js/plugins/plugins.min.js' %}></script>
+    <script src={% static 'assets/js/cart.js' %}></script>
+    <script src={% static 'assets/js/receipt.js' %}></script>
+
+    <!-- Main JS -->
+    <script src={% static 'assets/js/main.js' %}></script>
+
+
+
+    <script type="text/javascript">
+        // Get the form and submit button
+        const formEl_receipt = document.getElementById("receiptForm");
+        const name_receipt = document.getElementById("from");
+    
+        // Add a submit event listener to the form
+        formEl_receipt.addEventListener("submit", async function (e) {
+            e.preventDefault(); // Prevent the default form submission
+            console.log("Form submitted...");
+            
+    
+            try {
+                // Step 1: Submit the form to Formspree
+                const formspreeResponse_receipt = await submitToFormspree_receipt();
+    
+                // Step 2: If Formspree submission is successful, clear the cart
+                if (formspreeResponse_receipt.ok) {
+                    console.log("Formspree submission successful");
+                    clearCartAndRedirect_receipt();
+                } else {
+                    console.error("Formspree submission failed");
+                    alert("Form submission failed. Please try again.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred. Please try again.");
+            }
+        });
+    
+        // Function to submit the form to Formspree
+        async function submitToFormspree_receipt() {
+            const formspreeUrl_receipt = "https://formspree.io/f/moveldny"; // Your Formspree endpoint
+            const formData_receipt = new FormData(formEl_receipt); // Create FormData from the form
+            
+
+    
+            // Send the form data to Formspree
+            return fetch(formspreeUrl_receipt, {
+                method: "POST",
+                body: formData_receipt,
+                headers: {
+                    Accept: "application/json", // Ensure Formspree returns JSON
+                },
+            });
+        }
+    
+        // Function to clear the cart and redirect
+        function clearCartAndRedirect_receipt() {
+            console.log("Clearing cart...");
+    
+            // Clear the cart
+            const cart = {};
+            document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+            alert("Thanks, "+name_receipt.value )
+    
+            // Redirect to the home page
+            window.location.href = "{% url 'index' %}";
+        }
+    </script>
+
+
+
+
+    <script type="text/javascript">
+        const formEl_contact = document.getElementById("contact-form");
+        const name_contact = document.getElementById("contact-name");
+
+    
+        formEl_contact.addEventListener("submit", async function (e) {
+            e.preventDefault(); 
+            console.log("Form submitted...");
+    
+            try {
+                const formspreeResponse_contact = await submitToFormspree_contact();
+    
+                if (formspreeResponse_contact.ok) {
+                    console.log("Formspree submission successful");
+                    Redirect_contact();
+                } else {
+                    console.error("Formspree submission failed");
+                    alert("Form submission failed. Please try again.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred. Please try again."+ error);
+            }
+        });
+    
+        async function submitToFormspree_contact() {
+            const formspreeUrl_contact = "https://formspree.io/f/xoveldjb"; // Your Formspree endpoint
+            const formData_contact = new FormData(formEl_contact); // Create FormData from the form
+    
+            return fetch(formspreeUrl_contact, {
+                method: "POST",
+                body: formData_contact,
+                headers: {
+                    Accept: "application/json", // Ensure Formspree returns JSON
+                },
+            });
+        }
+        function Redirect_contact() {
+            console.log("Redirecting...");
+            alert("Message Delivered Successfully, "+name_contact.value);
+            window.location.href = "{% url 'contact' %}";
+        }
+    </script>
+
+</body>
+
+
+
+</html>
