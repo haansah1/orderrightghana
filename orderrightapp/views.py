@@ -360,15 +360,17 @@ def product_details(request, product_id):
     relatedProducts = []
     packages = []
     for p in goods:
-        if (p.type.name == product_type) & (p.id != product_id): 
-            relatedProducts.append(p)
-            print(p.type)
-        else:
-            packages.append(p)
+        if p.available == True:
+            if (p.type.name == product_type) & (p.id != product_id): 
+                relatedProducts.append(p)
+                print(p.type, p.name)
+            else:
+                packages.append(p)
 
     
     if product.description:
         list = (product.description).split(";")
+        relatedProducts = relatedProducts
         context = {"product": product, "relatedProducts": relatedProducts, "list": list, 'items':items, 'order': order, 'cartItems': cartItems, "random_number": random_number,}
     else:
         context = {"product": product, "relatedProducts": relatedProducts, "random_number": random_number, 'order': order, 'cartItems': cartItems, 'items':items}
