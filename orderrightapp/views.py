@@ -81,7 +81,7 @@ def search(request):
         
         for term in search_terms:
             # For each term, create OR condition between name and description
-            query &= (Q(name__icontains=term) | Q(description__icontains=term))
+            query &= (Q(name__icontains=term) | Q(description__icontains=term) | Q(detail__icontains=term))
         
         searched_items = Products.objects.filter(query).distinct()
     context= {"products": goods,  'searched': searched, 'searched_items':searched_items, 'items':items, 'order': order, 'cartItems': cartItems}

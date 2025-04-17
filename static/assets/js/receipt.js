@@ -7,6 +7,7 @@ document.getElementById('generateBtn').addEventListener('click', function() {
     const from = document.getElementById('from').value;
     const location = document.getElementById('location').value;
     const otherLocation = document.getElementById('otherLocation').value;
+    const room_num = document.getElementById('room_number').value;
     const paymentFor = document.querySelectorAll('.paymentFor');
     myArray =[];
     
@@ -18,6 +19,7 @@ document.getElementById('generateBtn').addEventListener('click', function() {
     document.getElementById('displayReceiptNo').innerText = receiptNo;
     document.getElementById('displayAmount').innerText = amount;
     document.getElementById('displayFrom').innerText = from;
+    document.getElementById('displayRoom').innerText = room_num;
     if(otherLocation !== "" && (location == "Others" || location == "")  ){
     document.getElementById('displayLocation').innerText = otherLocation;
     }
