@@ -24,8 +24,6 @@ random_number = generate_random_number()
 
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-# from django.views.decorators.cache import cache_page
-# cache_15min = cache_page(60 * 15)
 
 def shop(request):
     data = cartData(request)
@@ -110,9 +108,9 @@ def wears(request):
     
     for p in goods:
         if p.type.name == "wears":
-
-            wears.append(p)
-            print(p.type)
+            if p.available == True:
+                wears.append(p)
+                print(p.type)
         else:
             packages.append(p)
 
@@ -149,8 +147,9 @@ def laptops(request):
     
     for p in goods:
         if p.type.name == "laptops":
-            laptops.append(p)
-            print(p.type)
+            if p.available == True:
+                laptops.append(p)
+                print(p.type)
         else:
             packages.append(p)
     
@@ -200,9 +199,9 @@ def accessories(request):
     
     for p in goods:
         if p.type.name == "phone accessories":
-
-            accessories.append(p)
-            print(p.type)
+            if p.available == True:
+                accessories.append(p)
+                print(p.type)
         else:
             packages.append(p)
     
@@ -240,9 +239,9 @@ def room(request):
     
     for p in goods:
         if p.type.name == "room accessories":
-
-            room.append(p)
-            print(p.type)
+            if p.available == True:
+                room.append(p)
+                print(p.type)
         else:
             packages.append(p)
     
@@ -278,9 +277,9 @@ def phones(request):
     
     for p in goods:
         if p.type.name == "phones":
-
-            phones.append(p)
-            print(p.type)
+            if p.available == True:
+                phones.append(p)
+                print(p.type)
         else:
             packages.append(p)
     

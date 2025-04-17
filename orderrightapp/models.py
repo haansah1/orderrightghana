@@ -22,6 +22,8 @@ class Products(models.Model):
     description = models.CharField(max_length=500, null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     # image = models.ImageField(null=True, blank=True)
+    available = models.BooleanField(default=True)
+
     type = models.ForeignKey(
         Type,
         on_delete=models.SET_NULL,
