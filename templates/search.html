@@ -20,7 +20,7 @@
         {% for product in searched_items %}
         <div data-aos-duration="1000" data-aos="fade-up" style="padding: 20px; border-radius: 10px; box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff; background: #e0e0e0; display:flex;">
             <div style="justify-content:center; display:flex; flex-direction: column;">
-                <img style="object-fit: cover; height: 110px; width: 110px;"  src="{{ product.imageURL }}" class="offcanvas-cart-image" alt="Product Image" onerror="this.onerror=null; this.src='{% static 'assets/images/banner/banner-styl-3-img-1.jpg' %}';">
+                <img style="object-fit: contain; height: 110px; width: 110px;"  src="{{ product.imageURL }}" class="offcanvas-cart-image" alt="Product Image" onerror="this.onerror=null; this.src='{% static 'assets/images/banner/banner-styl-3-img-1.jpg' %}';">
             </div>
             <div style="width: 100%; text-align:center; ">
                 <h5 style="font-weight: bold; text-transform: capitalize;">{{product.name}}</h5>
