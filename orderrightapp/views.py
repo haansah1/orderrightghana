@@ -116,7 +116,7 @@ def wears(request):
         else:
             packages.append(p)
 
-    paginator = Paginator(wears, 12)  # Show 12 products per page
+    paginator = Paginator(list(reversed(wears)), 12)  # Show 12 products per page
     page = request.GET.get('page')
     
     try:
@@ -206,7 +206,7 @@ def accessories(request):
         else:
             packages.append(p)
     
-    paginator = Paginator(accessories, 12)  # Show 12 products per page
+    paginator = Paginator(list(reversed(accessories)), 12)  # Show 12 products per page
     page = request.GET.get('page')
     
     try:
@@ -284,7 +284,7 @@ def phones(request):
         else:
             packages.append(p)
     
-    paginator = Paginator(phones, 12)  # Show 12 products per page
+    paginator = Paginator(list(reversed(phones)), 12)  # Show 12 products per page
     page = request.GET.get('page')
     
     try:
