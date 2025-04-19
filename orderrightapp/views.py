@@ -245,7 +245,7 @@ def room(request):
         else:
             packages.append(p)
     
-    paginator = Paginator(room, 12)  # Show 12 products per page
+    paginator = Paginator(list(reversed(room)), 12)  # Show 12 products per page
     page = request.GET.get('page')
     
     try:
