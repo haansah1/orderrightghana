@@ -10,6 +10,12 @@ admin.site.register(Post)
 
 
 
+class ProductsAdmin(admin.ModelAdmin):
+    list_display = ('name',  'created_at')  # Fields to display in list view
+    search_fields = ('name', 'description')  # Fields to search
+
+
+
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
     extra = 1  # Number of empty forms to display by default

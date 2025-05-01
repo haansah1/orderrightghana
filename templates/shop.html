@@ -136,20 +136,7 @@
 
                         <!-- Start Single Sidebar Widget -->
                         <div class="sidebar-single-widget">
-                            {% comment %} <h6 class="sidebar-title">Tag products</h6>
-                            <div class="sidebar-content">
-                                <div class="tag-link">
-                                    <a href="#">asian</a>
-                                    <a href="#">brown</a>
-                                    <a href="#">euro</a>
-                                    <a href="#">fashion</a>
-                                    <a href="#">hat</a>
-                                    <a href="#">t-shirt</a>
-                                    <a href="#">teen</a>
-                                    <a href="#">travel</a>
-                                    <a href="#">white</a>
-                                </div>
-                            </div> {% endcomment %}
+                            
                         </div> <!-- End Single Sidebar Widget -->
 
                         <!-- Start Single Sidebar Widget -->
@@ -164,40 +151,8 @@
                     </div> <!-- End Sidebar Area -->
                 </div>
                 <div class="col-lg-9">
-                    <!-- Start Shop Product Sorting Section -->
-                    <div class="shop-sort-section">
-                        <div class="container">
-                            <div class="row">
-                                <!-- Start Sort Wrapper Box -->
-                                <div class="sort-box d-flex justify-content-between align-items-md-center align-items-start flex-md-row flex-column"
-                                    data-aos="fade-up" data-aos-delay="0">
-                                    <!-- Start Sort tab Button -->
-                                    <div class="sort-tablist d-flex align-items-center">
-                                        <ul class="tablist nav sort-tab-btn">
-                                            <li><a class="nav-link active" data-bs-toggle="tab"
-                                                    href="#layout-3-grid"><img src="{% static 'assets/images/icons/bkg_grid.png' %}"
-                                                        alt=""></a></li>
-                                            <li><a class="nav-link" data-bs-toggle="tab" href="#layout-list"><img
-                                                        src="{% static 'assets/images/icons/bkg_list.png' %}" alt=""></a></li>
-                                        </ul>
-
-                                        <!-- Start Page Amount -->
-                                        <div class="page-amount ml-2">
-                                            <span>List/Grid</span><br>
-                                            <span>All Orderright Products</span>
-                                        </div> <!-- End Page Amount -->
-                                    </div> <!-- End Sort tab Button -->
-
-                                    <!-- Start Sort Select Option -->
-                                    <div class="sort-select-list d-flex align-items-center">
-                                    </div> <!-- End Sort Select Option -->
-                                </div> <!-- Start Sort Wrapper Box -->
-                            </div>
-                        </div>
-                    </div> <!-- End Section Content -->
-
                     <!-- Start Tab Wrapper -->
-                    <div class="sort-product-tab-wrapper">
+                    {% comment %} <div class="sort-product-tab-wrapper">
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
@@ -312,10 +267,111 @@
                                 </div>
                             </div>
                         </div>
-                    </div> <!-- End Tab Wrapper -->
+                    </div> <!-- End Tab Wrapper --> {% endcomment %}
+                    
+
+                    <!-- Start Banner Section -->
+                    <div class="banner-section section-top-gap-100 section-fluid">
+                        <div class="banner-wrapper">
+                            <div class="container-fluid">
+                                <div class="row mb-n6">
+
+                                    <div class="col-lg-6 col-12 mb-6">
+                                        <!-- Start Banner Single Item -->
+                                        <div class="banner-single-item banner-style-1 banner-animation img-responsive"
+                                            data-aos="fade-up" data-aos-delay="0">
+                                            <div class="image">
+                                                <img src={% static 'assets/images/banner/shoes.png' %} alt="">
+                                            </div>
+                                            <div class="content" style="padding-left: 40px;">
+                                                <h4 class="title">Orderright - Kick Off Great Deals
+                                                    </h4>
+                                                <h5 class="sub-title">Walk the Talk, Save the Cash</h5>
+                                                <a href="{% url 'wears' %}"
+                                                    class="btn btn-lg btn-outline-golden icon-space-left"><span
+                                                        class="d-flex align-items-center">discover now <i
+                                                            class="ion-ios-arrow-thin-right"></i></span></a>
+                                            </div>
+                                        </div>
+                                        <!-- End Banner Single Item -->
+                                    </div>
+
+                                    <div class="col-lg-6 col-12 mb-6">
+                                        <div class="row mb-n6">
+                                            <!-- Start Banner Single Item -->
+                                            <div class="col-lg-6 col-sm-6 mb-6">
+                                                <div class="banner-single-item banner-style-2 banner-animation img-responsive"
+                                                    data-aos="fade-up" data-aos-delay="0">
+                                                    <div class="image">
+                                                        <img src={% static 'assets/images/banner/iphones.png' %} alt="">
+                                                    </div>
+                                                    <div class="content">
+                                                        <h4 class="title">Phones <br>
+                                                            </h4>
+                                                        <a href="{% url 'phones' %}" class="link-text"><span>Shop
+                                                                now</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Banner Single Item -->
+                                            <!-- Start Banner Single Item -->
+                                            <div class="col-lg-6 col-sm-6 mb-6">
+                                                <div class="banner-single-item banner-style-2 banner-animation img-responsive"
+                                                    data-aos="fade-up" data-aos-delay="200">
+                                                    <div class="image">
+                                                        <img src={% static 'assets/images/banner/phone_access.png' %} alt="">
+                                                    </div>
+                                                    <div class="content">
+                                                        <h4 class="title">Phone<br>
+                                                            Accessories</h4>
+                                                        <a href="{% url 'accessories' %}" class="link-text"><span>Shop
+                                                                now</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Banner Single Item -->
+                                            <!-- Start Banner Single Item -->
+                                            <div class="col-lg-6 col-sm-6 mb-6">
+                                                <div class="banner-single-item banner-style-2 banner-animation img-responsive"
+                                                    data-aos="fade-up" data-aos-delay="0">
+                                                    <div class="image">
+                                                        <img src={% static 'assets/images/banner/room_access.png' %} alt="">
+                                                    </div>
+                                                    <div class="content">
+                                                        <h4 class="title">Hostelroom<br>
+                                                            Accessories</h4>
+                                                        <a href="{% url 'room' %}" class="link-text"><span>Shop
+                                                                now</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Banner Single Item -->
+                                            <!-- Start Banner Single Item -->
+                                            <div class="col-lg-6 col-sm-6 mb-6">
+                                                <div class="banner-single-item banner-style-2 banner-animation img-responsive"
+                                                    data-aos="fade-up" data-aos-delay="200">
+                                                    <div class="image">
+                                                        <img src={% static 'assets/images/banner/laptops.png' %} alt="">
+                                                    </div>
+                                                    <div class="content">
+                                                        <h4>laptops <br>
+                                                            </h4>
+                                                        <a href="{% url 'laptops' %}"><span>Shop now</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Banner Single Item -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Banner Section -->
 
 
-                    <div class="page-pagination text-center" data-aos="fade-up" data-aos-delay="0">
+                    {% comment %} <div class="page-pagination text-center" data-aos="fade-up" data-aos-delay="0">
                         <ul>
                             {% if page_obj.has_previous %}
                                 <li><a href="?page=1"><i class="ion-ios-skipbackward"></i></a></li>
@@ -335,8 +391,7 @@
                                 <li><a href="?page={{ page_obj.paginator.num_pages }}"><i class="ion-ios-skipforward"></i></a></li>
                             {% endif %}
                         </ul>
-                    </div>
-<!-- End Pagination -->
+                    </div> {% endcomment %}
                     <!-- End Pagination -->
                 </div>
             </div>
