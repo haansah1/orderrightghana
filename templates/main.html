@@ -19,6 +19,28 @@
     <link rel="stylesheet" href={% static 'assets/css/style.min.css' %}>
     <link rel="stylesheet" href={% static 'assets/css/receipt.css' %}>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const maxRetries = 3;
+
+            document.querySelectorAll("img").forEach((img) => {
+                let retryCount = 0;
+                const originalSrc = img.src;
+
+                img.addEventListener("error", function () {
+                    if (retryCount < maxRetries) {
+                        const cacheBuster = `?retry=${retryCount}&t=${new Date().getTime()}`;
+                        img.src = originalSrc + cacheBuster;
+                        retryCount++;
+                    } else {
+                        img.alt = "Image failed to load";
+                        img.style.opacity = "0.5"; // optional visual feedback
+                    }
+                });
+            });
+        });
+    </script>
+
     <script type="text/javascript">
         var user = '{{request.user}}'
 
@@ -759,6 +781,7 @@
             window.location.href = "{% url 'contact' %}";
         }
     </script>
+    
 
 </body>
 

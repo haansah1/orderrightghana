@@ -153,7 +153,7 @@ def tshirts(request):
         else:
             packages.append(p)
 
-    paginator = Paginator(list(reversed(tshirts)), 12)  # Show 12 products per page
+    paginator = Paginator(list(reversed(tshirts)), 8)  # Show 12 products per page
     page = request.GET.get('page')
     
     try:
@@ -174,6 +174,45 @@ def tshirts(request):
         'page_obj': products,  # Explicitly pass as page_obj for template clarity
     }
     return render(request, 'tshirts.html', context)
+
+
+def hoodies(request):
+    data = cartData(request)
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+    hoodies = []
+    packages = []
+    
+    for p in goods:
+        if p.type.name == "hoodies":
+            if p.available == True:
+                hoodies.append(p)
+                print(p.type)
+        else:
+            packages.append(p)
+
+    paginator = Paginator(list(reversed(hoodies)), 12)  # Show 12 products per page
+    page = request.GET.get('page')
+    
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page
+        products = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range, deliver last page
+        products = paginator.page(paginator.num_pages)
+    
+    context = {
+        'items': items,
+        'order': order,
+        'cartItems': cartItems,
+        "packages":packages,
+        'products': products,  # This is the paginated Page object
+        'page_obj': products,  # Explicitly pass as page_obj for template clarity
+    }
+    return render(request, 'hoodies.html', context)
 
 
 

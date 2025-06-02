@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'orderrightapp',
     "cloudinary",
     "cloudinary_storage",
+    # 'livereload'
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'livereload.middleware.LiveReloadScript',
 ]
 
 ROOT_URLCONF = 'orderright.urls'

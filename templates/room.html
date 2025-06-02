@@ -93,8 +93,8 @@
                                                         <div class="image-box">
                                                             <a href="{% url 'product_details' product.id %}" class="image-link">
                                                                 {% for product_image in product.image.all|slice:":2" %}
-                                                                <img class="img-fluid"  style="object-fit:cover;"
-                                                                src="{{ product_image.image.url }}" alt="">
+                                                                <img loading="lazy" class="img-fluid"  style="object-fit:cover;"
+                                                                src="{{ product_image.image.url|add:'?f_auto,q_auto,w_400,h_400,c_fill' }}" alt="">
                                                                 {% endfor %}
                                                             </a>
                                                             <div class="action-link">
@@ -149,8 +149,8 @@
                                                         <a href="{% url 'product_details' product.id %}"
                                                             class="product-list-img-link">
                                                             {% for product_image in product.image.all %}
-                                                            <img class="img-fluid"
-                                                                src="{{ product_image.image.url }}" alt="">
+                                                            <img loading="lazy" class="img-fluid"
+                                                                src="{{ product_image.image.url|add:'?f_auto,q_auto,w_400,h_400,c_fill' }}" alt="">
                                                             {% endfor %}
                                                         </a>
                                                         <div class="product-list-content">
@@ -228,7 +228,7 @@
 
     
     {% comment %} <div style="background:black; width: 100vw; text-align:center; margin-top: -60px;">
-        <img class="img-fluid" style="object-fit:contain; height: 70vh;" src={% static 'assets/images/banner/coming_soon1.jpeg' %} alt="">
+        <img loading="lazy" class="img-fluid" style="object-fit:contain; height: 70vh;" src={% static 'assets/images/banner/coming_soon1.jpeg' %} alt="">
     <div> {% endcomment %}
 
     {% endblock content %}
