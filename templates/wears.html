@@ -36,6 +36,7 @@
                                 <a style="border-bottom: 4px solid #6C757D" href={% url 'wears' %}>Jordans</a>
                                 <a href={% url 'tshirts' %}>T-Shirts</a>
                                 <a href={% url 'hoodies' %}>Hoodies</a>
+                                <a href={% url 'combo' %}>Combo</a>
                             </div>
                             <div class="row">
                                 <!-- Start Sort Wrapper Box -->
@@ -95,8 +96,8 @@
                                                         <div class="image-box">
                                                             <a href="{% url 'product_details' product.id %}" class="image-link">
                                                                 {% for product_image in product.image.all|slice:":2" %}
-                                                                <img class="img-fluid" style="object-fit:cover;"
-                                                                src="{{ product_image.image.url }}" alt="">
+                                                                <img loading="lazy" class="img-fluid" style="object-fit:cover;"
+                                                                src="{{ product_image.image.url|add:'?f_auto,q_auto,w_400,h_400,c_fill' }}" alt="">
                                                                 {% endfor %}
                                                             </a>
                                                             <div class="action-link">
@@ -151,8 +152,8 @@
                                                         <a href="{% url 'product_details' product.id %}"
                                                             class="product-list-img-link">
                                                             {% for product_image in product.image.all %}
-                                                            <img class="img-fluid"
-                                                                src="{{ product_image.image.url }}" alt="">
+                                                            <img loading="lazy" class="img-fluid"
+                                                                src="{{ product_image.image.url|add:'?f_auto,q_auto,w_400,h_400,c_fill' }}" alt="">
                                                             {% endfor %}
                                                         </a>
                                                         <div class="product-list-content">

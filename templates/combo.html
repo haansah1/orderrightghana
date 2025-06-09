@@ -34,9 +34,9 @@
                         <div class="container">
                             <div style="display:flex;  justify-content:center; gap: 3em;">
                                 <a  href={% url 'wears' %}>Jordans</a>
-                                <a style="border-bottom: 4px solid #6C757D" href={% url 'tshirts' %}>T-Shirts</a>
+                                <a  href={% url 'tshirts' %}>T-shirts</a>
                                 <a  href={% url 'hoodies' %}>Hoodies</a>
-                                <a  href={% url 'combo' %}>Combo</a>
+                                <a style="border-bottom: 4px solid #6C757D" href={% url 'combo' %}>Combo</a>
                             </div>
                             <div class="row">
                                 <!-- Start Sort Wrapper Box -->
@@ -46,7 +46,7 @@
                                     <div class="sort-tablist d-flex align-items-center">
                                         <ul class="tablist nav sort-tab-btn">
                                             <li><a class="nav-link active" data-bs-toggle="tab"
-                                                    href="#layout-3-grid"><img src="{% static 'assets/images/icons/bkg_grid.png' %}"
+                                                    href="#layout-3-grid"><img loading="lazy" src="{% static 'assets/images/icons/bkg_grid.png' %}"
                                                         alt=""></a></li>
                                             <li><a class="nav-link" data-bs-toggle="tab" href="#layout-list"><img
                                                         src="{% static 'assets/images/icons/bkg_list.png' %}" alt=""></a></li>
@@ -97,7 +97,7 @@
                                                             <a href="{% url 'product_details' product.id %}" class="image-link">
                                                                 {% for product_image in product.image.all|slice:":2" %}
                                                                 <img loading="lazy" class="img-fluid" style="object-fit:cover;"
-                                                                src="{{ product_image.image.url|add:'?f_auto,q_auto,w_400,h_400,c_fill' }}" alt="">
+                                                                src="{{ product_image.image.url|add:'?f_auto,q_auto,w_400,h_400,c_fill'}}" alt="">
                                                                 {% endfor %}
                                                             </a>
                                                             <div class="action-link">
@@ -152,7 +152,7 @@
                                                         <a href="{% url 'product_details' product.id %}"
                                                             class="product-list-img-link">
                                                             {% for product_image in product.image.all %}
-                                                            <img class="img-fluid" loading="lazy"
+                                                            <img loading="lazy" class="img-fluid"
                                                                 src="{{ product_image.image.url|add:'?f_auto,q_auto,w_400,h_400,c_fill'}}" alt="">
                                                             {% endfor %}
                                                         </a>
@@ -223,6 +223,5 @@
             </div>
         </div>
     </div> <!-- ...:::: End Shop Section:::... -->
-    
 
     {% endblock content %}
